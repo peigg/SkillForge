@@ -42,7 +42,7 @@ SkillForge is an educational application designed to make easier the connection 
 
 ## Personal Thoughts
 
-- My goal with this development is to learn as much as I can in the field of Android development with Kotlin. Al well I want to take advantage of this oportunity to explore the basics of the AI world.
+- My goal with this development is to learn as much as I can in the field of Android development with Kotlin. As well I want to take advantage of this oportunity to explore the basics of the AI world.
  
 
 
