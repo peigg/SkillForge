@@ -11,6 +11,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.peigg.skillforge.ui.theme.SkillForgeTheme
+import org.w3c.dom.Text
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -22,7 +23,6 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    Greeting("Android")
                 }
             }
         }
@@ -30,17 +30,16 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
+fun Scaffold(){
+   // Scaffold Implementation
 }
 
-@Preview(showBackground = true)
 @Composable
-fun GreetingPreview() {
-    SkillForgeTheme {
-        Greeting("Android")
-    }
+fun AppBar (title: @Composable () -> Unit){
+  // AppBar Implementation
+}
+
+@Composable
+fun MessageCard (name: String){
+    Text(text = "$name")
 }
