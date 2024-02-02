@@ -1,3 +1,39 @@
+# Ignorar directorios específicos del sistema y archivos temporales
+AppData/
+Configuración local/
+Cookies/
+Datos de programa/
+Documents/Mi música/
+Documents/Mis imágenes/
+Documents/Mis vídeos/
+Entorno de red/
+Impresoras/
+Menú Inicio/
+Mis documentos/
+Plantillas/
+Reciente/
+SendTo/
+*.log
+*.tmp
+
+# Ignorar archivos específicos que pueden causar advertencias de CRLF
+-1.14-windows.xml
+.VirtualBox/
+.afirma/
+.android/
+
+# Además, se recomienda ignorar otros archivos y directorios comunes no relacionados con el código fuente
+*.class
+*.jar
+*.war
+*.ear
+*.db
+*.sql
+node_modules/
+dist/
+build/
+
+
 *.iml
 .gradle
 /local.properties
