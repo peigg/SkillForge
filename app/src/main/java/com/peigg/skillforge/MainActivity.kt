@@ -24,7 +24,17 @@ class MainActivity : ComponentActivity() {
             SkillForgeTheme {
                 Scaffold(
                     topBar = {
-                        TopAppBar(title = { Text("SkillForge") })
+                        TopAppBar(title = { Text("SkillForge") },
+                            navigationIcon = {
+                                // El logo ahora aparece como un icono en la AppBar.
+                                Image(
+                                    painter = painterResource(id = R.drawable.skillforge_logo),
+                                    contentDescription = "SkillForge Logo",
+                                    modifier = Modifier
+                                        .size(40.dp) // Ajusta el tamaño según sea necesario
+                                        .padding(8.dp)
+                                )
+                            })
                     },
                     bottomBar = {
                         BottomAppBar { /* Add BottomBar content here if needed */ }
@@ -42,23 +52,18 @@ class MainActivity : ComponentActivity() {
             modifier = modifier.fillMaxSize(),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            Text("Welcome to SkillForge", modifier = Modifier.padding(16.dp))
-            Spacer(modifier = Modifier.height(10.dp))
-            Image(
-                painter = painterResource(id = R.drawable.skillforge_logo),
-                contentDescription = "SkillForge Logo"
-            )
             Spacer(modifier = Modifier.height(20.dp))
             PersonaList()
         }
     }
 
+
     @Composable
     fun PersonaList() {
         val personas = listOf(
-            Persona("Pablo", "image_pablo"),
-            Persona("Juan", "image_juan"),
-            Persona("Paco", "image_paco")
+            Persona("Carla", R.drawable.imagen_carla),
+            Persona("Juan", R.drawable.image_juan),
+            Persona("Paco", R.drawable.image_paco)
         )
         LazyVerticalGrid(columns = GridCells.Fixed(3), contentPadding = PaddingValues(8.dp)) {
             items(personas) { persona ->
@@ -67,16 +72,21 @@ class MainActivity : ComponentActivity() {
         }
     }
 
-    data class Persona(val name: String, val image: String)
+    data class Persona(val name: String, val image: Int)
 
     @Composable
-    fun PersonaCard(name: String, image: String) {
-        Box(modifier = Modifier.padding(8.dp)) {
+    fun PersonaCard(name: String, image: Int) {
+        Column(
+            modifier = Modifier.padding(8.dp),
+            horizontalAlignment = Alignment.CenterHorizontally // Alinea el texto debajo de la imagen centrado horizontalmente
+        ) {
             Image(
-                painter = painterResource(id = R.drawable.ic_launcher_background), // Update this with actual image handling
-                contentDescription = "Profile User Image"
+                painter = painterResource(id = image),
+                contentDescription = "Profile User Image",
+                modifier = Modifier.size(100.dp) // Puedes ajustar el tamaño de la imagen aquí
             )
-            Text(text = name, modifier = Modifier.align(Alignment.BottomCenter))
+            Text(text = name)
         }
     }
 }
+
