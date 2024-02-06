@@ -1,4 +1,4 @@
-package com.peigg.skillforge.ui.theme
+package com.peigg.skillforge.ui
 
 import android.app.Activity
 import android.os.Build

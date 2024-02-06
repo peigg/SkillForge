@@ -1,6 +1,10 @@
+
+
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
+    id("dagger.hilt.android.plugin")
+    id("kotlin-kapt")
 }
 
 android {
@@ -50,6 +54,13 @@ android {
 }
 
 dependencies {
+
+    //implementación de hilt
+    implementation("com.google.dagger:hilt-android:2.40.5")
+    kapt("com.google.dagger:hilt-android-compiler:2.40.5")
+
+    implementation("androidx.navigation:navigation-compose:2.7.6")
+    implementation ("androidx.lifecycle:lifecycle-viewmodel-compose:2.7.0")
 
     implementation("androidx.core:core-ktx:1.12.0")
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.7.0")

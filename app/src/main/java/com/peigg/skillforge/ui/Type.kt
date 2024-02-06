@@ -1,4 +1,4 @@
-package com.peigg.skillforge.ui.theme
+package com.peigg.skillforge.ui
 
 import androidx.compose.material3.Typography
 import androidx.compose.ui.text.TextStyle
