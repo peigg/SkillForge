@@ -1,12 +1,11 @@
 package com.peigg.skillforge.screens.theme
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 
-import androidx.compose.foundation.lazy.grid.GridCells
-import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
-import androidx.compose.foundation.lazy.grid.items
+
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Menu
@@ -95,12 +94,15 @@ fun PersonaList() {
     }
 }
 
+
+
 @Composable
 fun PersonaCard(persona: Persona) {
     Card(
         modifier = Modifier
             .padding(8.dp)
-            .fillMaxWidth(),
+            .fillMaxWidth()
+            .border(4.dp, Color(0xFFA5ED0D), shape = MaterialTheme.shapes.medium),
         elevation = CardDefaults.cardElevation(defaultElevation = 4.dp),
         colors = CardDefaults.cardColors(containerColor = Color(0xFF19BDFF))
     ) {
