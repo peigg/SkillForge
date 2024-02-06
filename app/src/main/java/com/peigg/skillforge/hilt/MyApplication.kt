@@ -1,4 +1,4 @@
-package com.peigg.skillforge
+package com.peigg.skillforge.hilt
 
 import android.app.Application
 import dagger.hilt.android.HiltAndroidApp

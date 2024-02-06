@@ -1,4 +1,4 @@
-package com.peigg.skillforge.viewmodel
+package com.peigg.skillforge.screens.theme
 
 import androidx.lifecycle.ViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
