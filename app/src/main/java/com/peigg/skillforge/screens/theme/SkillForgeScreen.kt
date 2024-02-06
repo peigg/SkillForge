@@ -2,10 +2,12 @@ package com.peigg.skillforge.screens.theme
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.lazy.LazyColumn
 
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
+import androidx.compose.foundation.lazy.items
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Menu
 import androidx.compose.material3.*
@@ -16,6 +18,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
@@ -51,36 +54,72 @@ fun SkillForgeScreen(navController: NavController, paddingValues: PaddingValues)
 }
 
 
-data class Persona(val name: String, val image: Int)
-
+data class Persona(
+    val name: String,
+    val image: Int,
+    val especializacion: String,
+    val descripcion: String,
+    val precio: String
+)
 @Composable
 fun PersonaList() {
     val personas = listOf(
-        Persona("Carla", R.drawable.imagen_carla),
-        Persona("Juan", R.drawable.image_juan),
-        Persona("Paco", R.drawable.image_paco)
+        // Añade tus objetos Persona aquí
+        Persona(
+            "Juan Pérez",
+            R.drawable.image_juan,
+            "Desarrollo de aplicaciones móviles",
+            "Soy un desarrollador de aplicaciones móviles con 5 años de experiencia. He trabajado en proyectos de gran envergadura y me encantaría ayudarte a mejorar tus habilidades.",
+            "S/ 100"
+
+        ),
+        Persona(
+            "Paco Ramirez",
+            R.drawable.image_paco,
+            "Desarrollo web",
+            "Soy una desarrollador web con 3 años de experiencia. He trabajado en proyectos de gran envergadura y me encantaría ayudarte a mejorar tus habilidades.",
+            "S/ 80"
+        ),
+        Persona(
+            "Carla Sánchez",
+            R.drawable.imagen_carla,
+            "Desarrollo .NET",
+            "Soy una desarrollador fullstack con 15 años de experiencia. He trabajado en proyectos de gran envergadura y me encantaría ayudarte a mejorar tus habilidades.",
+            "S/ 120"
+        ),
     )
-    LazyVerticalGrid(columns = GridCells.Fixed(3), contentPadding = PaddingValues(8.dp)) {
+    LazyColumn(contentPadding = PaddingValues(8.dp)) {
         items(personas) { persona ->
-            PersonaCard(name = persona.name, image = persona.image)
+            PersonaCard(persona)
         }
     }
 }
 
 @Composable
-fun PersonaCard(name: String, image: Int) {
-    Column(
-        modifier = Modifier.padding(8.dp),
-        horizontalAlignment = Alignment.CenterHorizontally
+fun PersonaCard(persona: Persona) {
+    Card(
+        modifier = Modifier
+            .padding(8.dp)
+            .fillMaxWidth(),
+        elevation = CardDefaults.cardElevation(defaultElevation = 4.dp),
+        colors = CardDefaults.cardColors(containerColor = Color(0xFF19BDFF))
     ) {
-        Image(
-            painter = painterResource(id = image),
-            contentDescription = "Profile User Image",
-            modifier = Modifier.size(100.dp)
-        )
-        Text(text = name)
+        Column(modifier = Modifier.padding(16.dp)) {
+            Image(
+                painter = painterResource(id = persona.image),
+                contentDescription = "Profile User Image",
+                modifier = Modifier
+                    .size(100.dp)
+                    .align(Alignment.CenterHorizontally)
+            )
+            Text(text = persona.name, color = Color.White, style = MaterialTheme.typography.titleMedium)
+            Text(text = "Especialización: ${persona.especializacion}", color = Color.White, style = MaterialTheme.typography.bodyMedium)
+            Text(text = "Descripción: ${persona.descripcion}", color = Color.White, style = MaterialTheme.typography.bodySmall)
+            Text(text = "Precio/mes: ${persona.precio}", color = Color.White, style = MaterialTheme.typography.bodyLarge)
+        }
     }
 }
+
 
 
 @OptIn(ExperimentalMaterial3Api::class)
