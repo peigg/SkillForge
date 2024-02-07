@@ -7,8 +7,16 @@ import androidx.compose.foundation.lazy.LazyColumn
 
 
 import androidx.compose.foundation.lazy.items
+import androidx.compose.material3.SnackbarDuration
+
+import androidx.compose.material.BottomNavigation
+import androidx.compose.material.BottomNavigationItem
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.AccountCircle
+import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.Menu
+import androidx.compose.material.icons.filled.Search
+
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -18,6 +26,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
@@ -25,6 +34,8 @@ import com.peigg.skillforge.R
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+
+
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -36,7 +47,7 @@ fun SkillForgeScreen(navController: NavController, paddingValues: PaddingValues)
             AppTopBar(snackbarHostState)
         },
         bottomBar = {
-            AppBottomBar()
+            AppBottomBar(snackbarHostState, navController)
         },
         snackbarHost = { SnackbarHost(snackbarHostState) }
     ) { innerPadding ->
@@ -171,8 +182,50 @@ fun AppTopBar(snackbarHostState: SnackbarHostState) {
 }
 
 @Composable
-fun AppBottomBar() {
+fun AppBottomBar(snackbarHostState: SnackbarHostState, navController: NavController) {
     BottomAppBar {
-        // Aquí puedes añadir íconos o acciones para tu BottomAppBar
+
+        BottomNavigation {
+            BottomNavigationItem(
+                icon = { Icon(Icons.Filled.Home, contentDescription = "Home") },
+                label = { Text("Home") },
+                selected = false,
+                onClick = {
+                    //Aqui asignamos la navegación a la pantalla de inicio
+                    //NavHost(navController, startDestination = "home") {
+                    CoroutineScope(Dispatchers.Main).launch {
+                        snackbarHostState.showSnackbar("Home en construcción", duration = SnackbarDuration.Short)
+
+                    }
+                }
+            )
+            BottomNavigationItem(
+                icon = { Icon(Icons.Filled.Search, contentDescription = "Buscar") },
+                label = { Text("Buscar") },
+                selected = false,
+                onClick = {
+                    //Aqui asignamos la navegación a la pantalla de búsqueda
+                    //NavHost(navController, startDestination = "search") {
+                    CoroutineScope(Dispatchers.Main).launch {
+                        snackbarHostState.showSnackbar("Buscar en construcción", duration = SnackbarDuration.Short)
+
+
+                    }
+                }
+            )
+            BottomNavigationItem(
+                icon = { Icon(Icons.Filled.AccountCircle, contentDescription = "Perfil") },
+                label = { Text("Perfil") },
+                selected = false,
+                onClick = {
+                    //Aqui asignamos la navegación a la pantalla de perfil
+                    //NavHost(navController, startDestination = "profile") {
+                    CoroutineScope(Dispatchers.Main).launch {
+                        snackbarHostState.showSnackbar("Perfil en construcción", duration = SnackbarDuration.Short)
+
+                    }
+                }
+            )
+        }
     }
 }
