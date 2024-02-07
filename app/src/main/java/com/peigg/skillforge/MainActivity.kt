@@ -9,7 +9,7 @@ import androidx.compose.material3.*
 import androidx.navigation.compose.rememberNavController
 
 import com.peigg.skillforge.navigation.AppNavigation
-import com.peigg.skillforge.ui.SkillForgeTheme
+import com.peigg.skillforge.theme.SkillForgeTheme
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

@@ -1,4 +1,4 @@
-package com.peigg.skillforge.ui
+package com.peigg.skillforge.theme
 
 import androidx.compose.ui.graphics.Color
 
