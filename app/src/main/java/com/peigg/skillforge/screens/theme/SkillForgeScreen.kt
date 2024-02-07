@@ -9,8 +9,7 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.SnackbarDuration
 
-import androidx.compose.material.BottomNavigation
-import androidx.compose.material.BottomNavigationItem
+
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.AccountCircle
 import androidx.compose.material.icons.filled.Home
@@ -180,52 +179,60 @@ fun AppTopBar(snackbarHostState: SnackbarHostState) {
         }
     )
 }
-
 @Composable
 fun AppBottomBar(snackbarHostState: SnackbarHostState, navController: NavController) {
-    BottomAppBar {
+    NavigationBar(
+        containerColor = MaterialTheme.colorScheme.primaryContainer // Aquí cambias el color de fondo
+    ) {
+        var selectedItem by remember { mutableStateOf(0) }
+        val items = listOf("Home", "Buscar", "Perfil")
 
-        BottomNavigation {
-            BottomNavigationItem(
-                icon = { Icon(Icons.Filled.Home, contentDescription = "Home") },
-                label = { Text("Home") },
-                selected = false,
-                onClick = {
-                    //Aqui asignamos la navegación a la pantalla de inicio
-                    //NavHost(navController, startDestination = "home") {
-                    CoroutineScope(Dispatchers.Main).launch {
-                        snackbarHostState.showSnackbar("Home en construcción", duration = SnackbarDuration.Short)
-
-                    }
+        NavigationBarItem(
+            icon = { Icon(Icons.Filled.Home, contentDescription = "Home") },
+            label = { Text("Home") },
+            selected = selectedItem == 0,
+            onClick = {
+                selectedItem = 0
+              /*  navController.navigate("home") {
+                    popUpTo = navController.graph.startDestinationId
+                    launchSingleTop = true
+                }*/
+                CoroutineScope(Dispatchers.Main).launch {
+                    snackbarHostState.showSnackbar("Home en construcción", duration = SnackbarDuration.Short)
                 }
-            )
-            BottomNavigationItem(
-                icon = { Icon(Icons.Filled.Search, contentDescription = "Buscar") },
-                label = { Text("Buscar") },
-                selected = false,
-                onClick = {
-                    //Aqui asignamos la navegación a la pantalla de búsqueda
-                    //NavHost(navController, startDestination = "search") {
-                    CoroutineScope(Dispatchers.Main).launch {
-                        snackbarHostState.showSnackbar("Buscar en construcción", duration = SnackbarDuration.Short)
+            }
+        )
 
-
-                    }
+        NavigationBarItem(
+            icon = { Icon(Icons.Filled.Search, contentDescription = "Buscar") },
+            label = { Text("Buscar") },
+            selected = selectedItem == 1,
+            onClick = {
+                selectedItem = 1
+               /* navController.navigate("buscar") {
+                    popUpTo = navController.graph.startDestinationId
+                    launchSingleTop = true
+                }*/
+                CoroutineScope(Dispatchers.Main).launch {
+                    snackbarHostState.showSnackbar("Buscar en construcción", duration = SnackbarDuration.Short)
                 }
-            )
-            BottomNavigationItem(
-                icon = { Icon(Icons.Filled.AccountCircle, contentDescription = "Perfil") },
-                label = { Text("Perfil") },
-                selected = false,
-                onClick = {
-                    //Aqui asignamos la navegación a la pantalla de perfil
-                    //NavHost(navController, startDestination = "profile") {
-                    CoroutineScope(Dispatchers.Main).launch {
-                        snackbarHostState.showSnackbar("Perfil en construcción", duration = SnackbarDuration.Short)
+            }
+        )
 
-                    }
+        NavigationBarItem(
+            icon = { Icon(Icons.Filled.AccountCircle, contentDescription = "Perfil") },
+            label = { Text("Perfil") },
+            selected = selectedItem == 2,
+            onClick = {
+                selectedItem = 2
+              /*  navController.navigate("perfil") {
+                    popUpTo = navController.graph.startDestinationId
+                    launchSingleTop = true
+                } */
+                CoroutineScope(Dispatchers.Main).launch {
+                    snackbarHostState.showSnackbar("Perfil en construcción", duration = SnackbarDuration.Short)
                 }
-            )
-        }
+            }
+        )
     }
 }
