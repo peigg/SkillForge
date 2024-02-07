@@ -1,3 +1,6 @@
+/*
+* Pantalla de inicio de la aplicación
+ */
 package com.peigg.skillforge.screens.theme
 
 import androidx.compose.foundation.Image

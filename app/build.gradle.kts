@@ -1,5 +1,3 @@
-
-
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
@@ -56,7 +54,7 @@ android {
 dependencies {
 
     //implementación de hilt
-    implementation("com.google.dagger:hilt-android:2.40.5")
+    implementation("com.google.dagger:hilt-android:2.44")
     kapt("com.google.dagger:hilt-android-compiler:2.40.5")
 
     implementation("androidx.navigation:navigation-compose:2.7.6")

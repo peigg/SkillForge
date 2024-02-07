@@ -1,3 +1,6 @@
+/*
+    * Main Activity
+ */
 package com.peigg.skillforge
 
 import android.os.Bundle

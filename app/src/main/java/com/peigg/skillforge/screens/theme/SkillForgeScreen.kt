@@ -1,21 +1,21 @@
+/*
+Este archivo contiene el código de la pantalla principal de la aplicación SkillForge.
+ */
+
 package com.peigg.skillforge.screens.theme
 
+import SkillForgeScreenViewModel
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
-
-
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.SnackbarDuration
-
-
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.AccountCircle
 import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.Menu
 import androidx.compose.material.icons.filled.Search
-
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -25,7 +25,6 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
@@ -33,14 +32,14 @@ import com.peigg.skillforge.R
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-
+import dagger.hilt.android.lifecycle.hiltViewModel
 
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun SkillForgeScreen(navController: NavController, paddingValues: PaddingValues) {
+fun SkillForgeScreen(navController: NavController, paddingValues: PaddingValues, viewModel: SkillForgeScreenViewModel = hiltViewModel()) {
     val snackbarHostState = remember { SnackbarHostState() }
-
+    val personas = viewModel.personas.value
     Scaffold(
         topBar = {
             AppTopBar(snackbarHostState)
@@ -57,54 +56,25 @@ fun SkillForgeScreen(navController: NavController, paddingValues: PaddingValues)
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             Spacer(modifier = Modifier.height(20.dp))
-            PersonaList()
+            PersonaList(personas = personas)
         }
     }
 }
-
-
 data class Persona(
     val name: String,
     val image: Int,
-    val especializacion: String,
+    val spec: String,
     val descripcion: String,
     val precio: String
 )
 @Composable
-fun PersonaList() {
-    val personas = listOf(
-        // Añade tus objetos Persona aquí
-        Persona(
-            "Juan Pérez",
-            R.drawable.image_juan,
-            "Desarrollo de aplicaciones móviles",
-            "Soy un desarrollador de aplicaciones móviles con 5 años de experiencia. He trabajado en proyectos de gran envergadura y me encantaría ayudarte a mejorar tus habilidades.",
-            "S/ 100"
-
-        ),
-        Persona(
-            "Paco Ramirez",
-            R.drawable.image_paco,
-            "Desarrollo web",
-            "Soy una desarrollador web con 3 años de experiencia. He trabajado en proyectos de gran envergadura y me encantaría ayudarte a mejorar tus habilidades.",
-            "S/ 80"
-        ),
-        Persona(
-            "Carla Sánchez",
-            R.drawable.imagen_carla,
-            "Desarrollo .NET",
-            "Soy una desarrollador fullstack con 15 años de experiencia. He trabajado en proyectos de gran envergadura y me encantaría ayudarte a mejorar tus habilidades.",
-            "S/ 120"
-        ),
-    )
+fun PersonaList(personas: List<Persona>) {
     LazyColumn(contentPadding = PaddingValues(8.dp)) {
         items(personas) { persona ->
             PersonaCard(persona)
         }
     }
 }
-
-
 
 @Composable
 fun PersonaCard(persona: Persona) {
@@ -125,7 +95,7 @@ fun PersonaCard(persona: Persona) {
                     .align(Alignment.CenterHorizontally)
             )
             Text(text = persona.name, color = Color.White, style = MaterialTheme.typography.titleMedium)
-            Text(text = "Especialización: ${persona.especializacion}", color = Color.White, style = MaterialTheme.typography.bodyMedium)
+            Text(text = "Especialización: ${persona.spec}", color = Color.White, style = MaterialTheme.typography.bodyMedium)
             Text(text = "Descripción: ${persona.descripcion}", color = Color.White, style = MaterialTheme.typography.bodySmall)
             Text(text = "Precio/mes: ${persona.precio}", color = Color.White, style = MaterialTheme.typography.bodyLarge)
         }
