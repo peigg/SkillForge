@@ -1,7 +1,7 @@
 /*
 * Pantalla de inicio de la aplicación
  */
-package com.peigg.skillforge.screens.theme
+package com.peigg.skillforge
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable

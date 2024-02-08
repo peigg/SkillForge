@@ -2,9 +2,8 @@
 Este archivo contiene el código de la pantalla principal de la aplicación SkillForge.
  */
 
-package com.peigg.skillforge.screens.theme
+package com.peigg.skillforge
 
-import SkillForgeScreenViewModel
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.*
@@ -27,12 +26,12 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
-import com.peigg.skillforge.R
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import dagger.hilt.android.lifecycle.hiltViewModel
+
 
 
 @OptIn(ExperimentalMaterial3Api::class)

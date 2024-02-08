@@ -10,8 +10,8 @@ import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
-import com.peigg.skillforge.screens.theme.SkillForgeScreen
-import com.peigg.skillforge.screens.theme.StartScreen
+import com.peigg.skillforge.SkillForgeScreen
+import com.peigg.skillforge.StartScreen
 
 
 @Composable

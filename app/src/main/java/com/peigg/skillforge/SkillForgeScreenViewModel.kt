@@ -1,10 +1,10 @@
-
+package com.peigg.skillforge
 import androidx.lifecycle.ViewModel
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.State
 import androidx.lifecycle.viewModelScope
 import com.peigg.skillforge.R
-import com.peigg.skillforge.screens.theme.Persona
+import com.peigg.skillforge.Persona
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
