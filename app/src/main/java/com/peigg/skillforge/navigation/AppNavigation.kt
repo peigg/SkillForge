@@ -7,19 +7,25 @@ package com.peigg.skillforge.navigation
 
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.runtime.Composable
-import androidx.navigation.NavHostController
+import androidx.compose.ui.unit.dp
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
-import com.peigg.skillforge.SkillForgeScreen
-import com.peigg.skillforge.StartScreen
+import androidx.navigation.compose.rememberNavController
+import com.peigg.skillforge.features.ui.skillForgeScreen.SkillForgeScreen
+import com.peigg.skillforge.features.ui.startscreen.StartScreen
+import androidx.compose.ui.Modifier
+import com.peigg.skillforge.features.ui.skillForgeScreen.navigateToSkillForgeScreen
+import com.peigg.skillforge.features.ui.skillForgeScreen.skillForgeScreen
+import com.peigg.skillforge.features.ui.startscreen.startScreen
 
 
 @Composable
-fun AppNavigation(navController: NavHostController, paddingValues: PaddingValues) {
-    NavHost(navController = navController, startDestination = "splash") {
-        composable("splash") { StartScreen(navController) }
-        composable("home") { SkillForgeScreen(navController, paddingValues) }
-
-
+fun AppNavigation(modifier: Modifier = Modifier) {
+    val navController = rememberNavController()
+    NavHost(navController = navController, startDestination = "start_screen") {
+        composable("start_screen") {
+            StartScreen(navigateToSkillForgeScreen = { navController.navigateToSkillForgeScreen() })
+        }
+        skillForgeScreen(navController) // Llamada a la función definida en SkillForgeScreenNavigation.kt
     }
 }

@@ -1,10 +1,9 @@
-package com.peigg.skillforge
+package com.peigg.skillforge.features.ui.skillForgeScreen
 import androidx.lifecycle.ViewModel
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.State
 import androidx.lifecycle.viewModelScope
 import com.peigg.skillforge.R
-import com.peigg.skillforge.Persona
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -16,9 +15,9 @@ class SkillForgeScreenViewModel @Inject constructor() : ViewModel() {
 
     init {
         viewModelScope.launch {
-            // Aquí podrías cargar los datos desde una base de datos o un servicio web
+
             _personas.value = listOf(
-                // Inicializa tu lista de personas aquí
+
                 Persona(
                     "Juan Pérez",
                     R.drawable.image_juan,
@@ -31,7 +30,8 @@ class SkillForgeScreenViewModel @Inject constructor() : ViewModel() {
                     "Paco Ramirez",
                     R.drawable.image_paco,
                     "Desarrollo web",
-                    "Soy una desarrollador web con 3 años de experiencia. He trabajado en proyectos de gran envergadura y me encantaría ayudarte a mejorar tus habilidades.",
+                    "Soy una desarrollador web con 3 años de experiencia. He trabajado" +
+                            " en proyectos de gran envergadura y me encantaría ayudarte a mejorar tus habilidades.",
                     "S/ 80"
                 ),
                 Persona(

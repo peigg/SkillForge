@@ -2,7 +2,7 @@
 Este archivo contiene el código de la pantalla principal de la aplicación SkillForge.
  */
 
-package com.peigg.skillforge
+package com.peigg.skillforge.features.ui.skillForgeScreen
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.border
@@ -28,6 +28,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
+import com.peigg.skillforge.R
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -36,7 +37,7 @@ import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun SkillForgeScreen(navController: NavController, paddingValues: PaddingValues, viewModel: SkillForgeScreenViewModel = hiltViewModel()) {
+fun SkillForgeScreen(navController: NavController, viewModel: SkillForgeScreenViewModel = hiltViewModel()) {
     val snackbarHostState = remember { SnackbarHostState() }
     val personas = viewModel.personas.value
     Scaffold(

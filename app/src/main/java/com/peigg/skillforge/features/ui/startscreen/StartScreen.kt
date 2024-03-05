@@ -1,7 +1,7 @@
 /*
 * Pantalla de inicio de la aplicación
  */
-package com.peigg.skillforge
+package com.peigg.skillforge.features.ui.startscreen
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
@@ -22,18 +22,14 @@ import androidx.navigation.NavHostController
 import com.peigg.skillforge.R
 
 @Composable
-fun StartScreen(navController: NavHostController) {
+fun StartScreen(navigateToSkillForgeScreen: () -> Unit){
     val logo: Painter = painterResource(id = R.drawable.skillforge_logo)
     Box(
         modifier = Modifier
             .fillMaxSize()
-            .clickable {
-                navController.navigate("home") {
-                    // Asegura que la splash screen no se pueda volver a visitar con el botón atrás
-                    popUpTo("splash") { inclusive = true }
-                    launchSingleTop = true
-                }
-            }, contentAlignment = Alignment.Center
+            .clickable(onClick = navigateToSkillForgeScreen),
+
+        contentAlignment = Alignment.Center
 
 
     ) {
