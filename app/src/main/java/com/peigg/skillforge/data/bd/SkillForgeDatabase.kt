@@ -1,4 +1,4 @@
-package com.peigg.skillforge.bd
+package com.peigg.skillforge.data.bd
 
 object SkillForgeDatabase {
 
