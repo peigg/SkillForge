@@ -150,12 +150,12 @@ fun AppTopBar(snackbarHostState: SnackbarHostState) {
     )
 }
 @Composable
-fun AppBottomBar(snackbarHostState: SnackbarHostState, navController: NavController) {
+fun AppBottomBar(snackbarHostState: SnackbarHostState,navController: NavController ) {
     NavigationBar(
         containerColor = MaterialTheme.colorScheme.primaryContainer // Aquí cambias el color de fondo
     ) {
         var selectedItem by remember { mutableStateOf(0) }
-        val items = listOf("Home", "Buscar", "Perfil")
+
 
         NavigationBarItem(
             icon = { Icon(Icons.Filled.Home, contentDescription = "Home") },

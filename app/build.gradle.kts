@@ -42,7 +42,7 @@ android {
         compose = true
     }
     composeOptions {
-        kotlinCompilerExtensionVersion = "1.5.1"
+        kotlinCompilerExtensionVersion = "1.5.9"
     }
     packaging {
         resources {
@@ -54,9 +54,9 @@ android {
 dependencies {
 
     //implementación de hilt
-    implementation("com.google.dagger:hilt-android:2.44")
+    implementation("com.google.dagger:hilt-android:2.46")
     implementation("androidx.room:room-common:2.6.1")
-    kapt("com.google.dagger:hilt-android-compiler:2.44")
+    kapt("com.google.dagger:hilt-android-compiler:2.46")
 
     implementation("androidx.hilt:hilt-navigation-compose:1.0.0")
 
