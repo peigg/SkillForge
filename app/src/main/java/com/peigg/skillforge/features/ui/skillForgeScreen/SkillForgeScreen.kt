@@ -4,6 +4,7 @@ Este archivo contiene el código de la pantalla principal de la aplicación Skil
 
 package com.peigg.skillforge.features.ui.skillForgeScreen
 
+import android.util.Log
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.*
@@ -17,6 +18,7 @@ import androidx.compose.material.icons.filled.Menu
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -29,17 +31,16 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.peigg.skillforge.R
+import com.peigg.skillforge.domain.Coaches
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-
-
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun SkillForgeScreen(navController: NavController, viewModel: SkillForgeScreenViewModel = hiltViewModel()) {
     val snackbarHostState = remember { SnackbarHostState() }
-    val personas = viewModel.personas.value
+    val coaches by viewModel.coaches.collectAsState()
+    Log.d("SkillForgeScreen", "Coaches updated: $coaches")
     Scaffold(
         topBar = {
             AppTopBar(snackbarHostState)
@@ -56,28 +57,22 @@ fun SkillForgeScreen(navController: NavController, viewModel: SkillForgeScreenVi
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             Spacer(modifier = Modifier.height(20.dp))
-            PersonaList(personas = personas)
-        }
-    }
-}
-data class Persona(
-    val name: String,
-    val image: Int,
-    val spec: String,
-    val descripcion: String,
-    val precio: String
-)
-@Composable
-fun PersonaList(personas: List<Persona>) {
-    LazyColumn(contentPadding = PaddingValues(8.dp)) {
-        items(personas) { persona ->
-            PersonaCard(persona)
+            PersonaList(coaches = coaches)
         }
     }
 }
 
 @Composable
-fun PersonaCard(persona: Persona) {
+fun PersonaList(coaches: List<Coaches>) {
+    LazyColumn(contentPadding = PaddingValues(8.dp)) {
+        items(coaches) { coach ->
+            PersonaCard(coach)
+        }
+    }
+}
+
+@Composable
+fun PersonaCard(coaches: Coaches) {
     Card(
         modifier = Modifier
             .padding(8.dp)
@@ -88,21 +83,19 @@ fun PersonaCard(persona: Persona) {
     ) {
         Column(modifier = Modifier.padding(16.dp)) {
             Image(
-                painter = painterResource(id = persona.image),
+                painter = painterResource(id = coaches.image),
                 contentDescription = "Profile User Image",
                 modifier = Modifier
                     .size(100.dp)
                     .align(Alignment.CenterHorizontally)
             )
-            Text(text = persona.name, color = Color.White, style = MaterialTheme.typography.titleMedium)
-            Text(text = "Especialización: ${persona.spec}", color = Color.White, style = MaterialTheme.typography.bodyMedium)
-            Text(text = "Descripción: ${persona.descripcion}", color = Color.White, style = MaterialTheme.typography.bodySmall)
-            Text(text = "Precio/mes: ${persona.precio}", color = Color.White, style = MaterialTheme.typography.bodyLarge)
+            Text(text = coaches.name, color = Color.White, style = MaterialTheme.typography.titleMedium)
+            Text(text = "Especialización: ${coaches.spec}", color = Color.White, style = MaterialTheme.typography.bodyMedium)
+            Text(text = "Descripción: ${coaches.description}", color = Color.White, style = MaterialTheme.typography.bodySmall)
+            Text(text = "Precio/mes: ${coaches.price}", color = Color.White, style = MaterialTheme.typography.bodyLarge)
         }
     }
 }
-
-
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable

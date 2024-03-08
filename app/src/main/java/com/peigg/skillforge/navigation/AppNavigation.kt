@@ -5,18 +5,16 @@
  */
 package com.peigg.skillforge.navigation
 
-import androidx.compose.foundation.layout.PaddingValues
+
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.unit.dp
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.peigg.skillforge.features.ui.skillForgeScreen.SkillForgeScreen
 import com.peigg.skillforge.features.ui.startscreen.StartScreen
 import androidx.compose.ui.Modifier
 import com.peigg.skillforge.features.ui.skillForgeScreen.navigateToSkillForgeScreen
 import com.peigg.skillforge.features.ui.skillForgeScreen.skillForgeScreen
-import com.peigg.skillforge.features.ui.startscreen.startScreen
+
 
 
 @Composable

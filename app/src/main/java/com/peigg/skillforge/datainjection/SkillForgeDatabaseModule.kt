@@ -1,22 +1,44 @@
 package com.peigg.skillforge.datainjection
 
+
 import android.content.Context
 import android.database.sqlite.SQLiteDatabase
+import com.peigg.skillforge.data.bd.SkillForgeRepository
 import com.peigg.skillforge.data.bd.DbHelper
+
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
-import dagger.hilt.android.components.ViewModelComponent
 import dagger.hilt.android.qualifiers.ApplicationContext
+import dagger.hilt.components.SingletonComponent
+import javax.inject.Singleton
 
 @Module
-@InstallIn(ViewModelComponent::class)
-
+@InstallIn(SingletonComponent::class)
 object SkillForgeDatabaseModule {
     const val DATABASE_NAME = "SkillForgeDatabase.db"
 
-@Provides
+    @Singleton
+    @Provides
+    fun provideDbHelper(@ApplicationContext context: Context): DbHelper {
+        return DbHelper(context)
+    }
 
-fun providesDbHelper(@ApplicationContext context: Context) : SQLiteDatabase { return DbHelper(context).readableDatabase }
+    @Singleton
+    @Provides
+    fun provideReadableDatabase(dbHelper: DbHelper): SQLiteDatabase {
+        return dbHelper.readableDatabase
+    }
 
+    @Singleton
+    @Provides
+    fun provideWritableDatabase(dbHelper: DbHelper): SQLiteDatabase {
+        return dbHelper.writableDatabase
+    }
+
+    @Singleton
+    @Provides
+    fun provideSkillForgeRepository(dbHelper: DbHelper): SkillForgeRepository {
+        return SkillForgeRepository(dbHelper)
+    }
 }

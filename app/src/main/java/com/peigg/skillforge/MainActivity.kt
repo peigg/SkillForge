@@ -3,23 +3,13 @@
  */
 package com.peigg.skillforge
 
-import android.content.ContentValues
-import android.content.Context
-import android.os.Build.VERSION_CODES.S
+
 import android.os.Bundle
-import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.padding
-
 import androidx.compose.material3.*
 import androidx.compose.ui.Modifier
-
-import androidx.navigation.compose.rememberNavController
-import com.peigg.skillforge.data.bd.DbHelper
-import com.peigg.skillforge.data.bd.SQL_CREATE_ENTRIES
-import com.peigg.skillforge.data.bd.SkillForgeDatabase
-
 import com.peigg.skillforge.navigation.AppNavigation
 import com.peigg.skillforge.theme.SkillForgeTheme
 import dagger.hilt.android.AndroidEntryPoint
