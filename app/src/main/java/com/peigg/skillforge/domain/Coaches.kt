@@ -2,7 +2,7 @@ package com.peigg.skillforge.domain
 
 import com.peigg.skillforge.data.bd.coaches_db.CoachesEntity
 
-data class Coaches (
+data class Coaches(
     val id: Int = 0,
     val name: String = "",
     val image: Int = 0,

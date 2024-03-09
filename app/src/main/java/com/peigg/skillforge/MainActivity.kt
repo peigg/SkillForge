@@ -4,12 +4,16 @@
 package com.peigg.skillforge
 
 
+import android.content.ContentValues
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.*
 import androidx.compose.ui.Modifier
+import com.peigg.skillforge.data.bd.DbHelper
+import com.peigg.skillforge.data.bd.SQL_DELETE_ENTRIES
+import com.peigg.skillforge.data.bd.SkillForgeDatabase
 import com.peigg.skillforge.navigation.AppNavigation
 import com.peigg.skillforge.theme.SkillForgeTheme
 import dagger.hilt.android.AndroidEntryPoint
@@ -23,8 +27,13 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
 
 /*
+       deleteDatabase("SkillForgeDatabase.db")
+
+
        val dbHelper = DbHelper(this)
-       val db = dbHelper.readableDatabase
+       val db = dbHelper.writableDatabase
+
+
 
 
        val values = ContentValues().apply {

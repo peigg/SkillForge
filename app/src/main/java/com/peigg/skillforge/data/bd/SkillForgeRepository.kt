@@ -1,6 +1,5 @@
 package com.peigg.skillforge.data.bd
 
-import android.annotation.SuppressLint
 import android.content.ContentValues
 import com.peigg.skillforge.R
 import com.peigg.skillforge.domain.Coaches
