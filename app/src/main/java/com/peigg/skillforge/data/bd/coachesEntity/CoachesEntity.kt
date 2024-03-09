@@ -1,4 +1,4 @@
-package com.peigg.skillforge.data.bd.coaches_db
+package com.peigg.skillforge.data.bd.coachesEntity
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity

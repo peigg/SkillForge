@@ -1,13 +1,10 @@
-package com.peigg.skillforge.data.bd
+package com.peigg.skillforge.data.bd.sqlite
 
 
 
 import android.content.Context
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
-import dagger.hilt.android.qualifiers.ApplicationContext
-import javax.inject.Inject
-
 
 
 class DbHelper( context: Context) : SQLiteOpenHelper(context, DATABASE_NAME, null, DATABASE_VERSION){

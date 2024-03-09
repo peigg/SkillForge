@@ -1,6 +1,6 @@
 package com.peigg.skillforge.domain
 
-import com.peigg.skillforge.data.bd.coaches_db.CoachesEntity
+import com.peigg.skillforge.data.bd.coachesEntity.CoachesEntity
 
 data class Coaches(
     val id: Int = 0,

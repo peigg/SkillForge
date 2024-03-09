@@ -1,7 +1,10 @@
-package com.peigg.skillforge.data.bd
+package com.peigg.skillforge.data.bd.repositories
 
 import android.content.ContentValues
 import com.peigg.skillforge.R
+import com.peigg.skillforge.data.bd.room.CoachesRoom
+import com.peigg.skillforge.data.bd.sqlite.DbHelper
+import com.peigg.skillforge.data.bd.sqlite.SkillForgeDatabase
 import com.peigg.skillforge.domain.Coaches
 import kotlinx.coroutines.Dispatchers.IO
 import kotlinx.coroutines.withContext
@@ -9,9 +12,19 @@ import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
-class SkillForgeRepository @Inject constructor(private val dbHelper: DbHelper) {
+class SkillForgeRepository @Inject constructor(
+    private val dbHelper: DbHelper,
+    private val coachesRoom: CoachesRoom
 
-    suspend fun setupSkillForgeDatabase() = withContext(IO) {
+) {
+
+    suspend fun setupSkillForgeDatabase() {
+        withContext(IO) {
+
+        }
+
+        withContext(IO) {
+
         val db = dbHelper.writableDatabase // Obtén la base de datos para operaciones de escritura
         val cursor = db.rawQuery("SELECT COUNT(*) FROM ${SkillForgeDatabase.TABLE_NAME}", null)
         cursor.moveToFirst()
@@ -60,4 +73,4 @@ class SkillForgeRepository @Inject constructor(private val dbHelper: DbHelper) {
         list
     }
 
-}
+}}

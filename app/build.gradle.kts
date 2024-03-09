@@ -52,17 +52,22 @@ android {
 }
 
 dependencies {
+    val roomVersion = "2.6.1"
+
+    implementation("androidx.room:room-runtime:$roomVersion")
+    annotationProcessor("androidx.room:room-compiler:$roomVersion")
+    // To use Kotlin annotation processing tool (kapt)
+    kapt("androidx.room:room-compiler:$roomVersion")
+    implementation("androidx.room:room-ktx:$roomVersion")
 
     //implementación de hilt
     implementation("com.google.dagger:hilt-android:2.46")
-    implementation("androidx.room:room-common:2.6.1")
+    implementation("androidx.room:room-common:$roomVersion")
     kapt("com.google.dagger:hilt-android-compiler:2.46")
-
     implementation("androidx.hilt:hilt-navigation-compose:1.2.0")
 
     implementation("androidx.navigation:navigation-compose:2.7.7")
     implementation ("androidx.lifecycle:lifecycle-viewmodel-compose:2.7.0")
-
     implementation("androidx.core:core-ktx:1.12.0")
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.7.0")
     implementation("androidx.activity:activity-compose:1.8.2")

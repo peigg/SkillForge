@@ -1,4 +1,4 @@
-package com.peigg.skillforge.data.bd
+package com.peigg.skillforge.data.bd.sqlite
 
 object SkillForgeDatabase {
 

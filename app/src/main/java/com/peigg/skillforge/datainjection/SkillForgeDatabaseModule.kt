@@ -3,8 +3,10 @@ package com.peigg.skillforge.datainjection
 
 import android.content.Context
 import android.database.sqlite.SQLiteDatabase
-import com.peigg.skillforge.data.bd.SkillForgeRepository
-import com.peigg.skillforge.data.bd.DbHelper
+import androidx.room.Room
+import com.peigg.skillforge.data.bd.repositories.SkillForgeRepository
+import com.peigg.skillforge.data.bd.room.CoachesRoom
+import com.peigg.skillforge.data.bd.sqlite.DbHelper
 
 import dagger.Module
 import dagger.Provides
@@ -18,27 +20,36 @@ import javax.inject.Singleton
 object SkillForgeDatabaseModule {
     const val DATABASE_NAME = "SkillForgeDatabase.db"
 
-    @Singleton
+
     @Provides
     fun provideDbHelper(@ApplicationContext context: Context): DbHelper {
         return DbHelper(context)
     }
 
-    @Singleton
+
     @Provides
     fun provideReadableDatabase(dbHelper: DbHelper): SQLiteDatabase {
         return dbHelper.readableDatabase
     }
 
-    @Singleton
+
     @Provides
     fun provideWritableDatabase(dbHelper: DbHelper): SQLiteDatabase {
         return dbHelper.writableDatabase
     }
 
-    @Singleton
+
     @Provides
-    fun provideSkillForgeRepository(dbHelper: DbHelper): SkillForgeRepository {
-        return SkillForgeRepository(dbHelper)
+    fun provideSkillForgeRepository(dbHelper: DbHelper,coachesRoom: CoachesRoom): SkillForgeRepository {
+        return SkillForgeRepository(dbHelper, coachesRoom)
     }
+}
+
+@Provides
+fun provideCoachesRoom(@ApplicationContext context: Context): CoachesRoom {
+    return Room.databaseBuilder(
+        context,
+        CoachesRoom::class.java,
+        "CoachesRoom"
+    ).build()
 }

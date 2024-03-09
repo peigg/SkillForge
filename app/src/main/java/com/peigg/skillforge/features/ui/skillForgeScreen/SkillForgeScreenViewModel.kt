@@ -1,6 +1,6 @@
 package com.peigg.skillforge.features.ui.skillForgeScreen
 import android.util.Log
-import com.peigg.skillforge.data.bd.SkillForgeRepository
+import com.peigg.skillforge.data.bd.repositories.SkillForgeRepository
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 
