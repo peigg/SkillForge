@@ -13,7 +13,6 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
-import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
@@ -40,8 +39,8 @@ object SkillForgeDatabaseModule {
 
 
     @Provides
-    fun provideSkillForgeRepository(dbHelper: DbHelper,coachesRoom: CoachesRoom): SkillForgeRepository {
-        return SkillForgeRepository(dbHelper,coachesRoom)
+    fun provideSkillForgeRepository(dbHelper: DbHelper,coachesRoom: CoachesRoom,sharedPreferences: CoachesSharedPreferences): SkillForgeRepository {
+        return SkillForgeRepository(dbHelper,coachesRoom, sharedPreferences )
     }
 
 
