@@ -2,11 +2,14 @@ package com.peigg.skillforge.data.bd.repositories
 
 import android.content.ContentValues
 import com.peigg.skillforge.R
+import com.peigg.skillforge.data.bd.room.CoachesDao
+import com.peigg.skillforge.data.bd.room.CoachesEntity
 import com.peigg.skillforge.data.bd.room.CoachesRoom
 import com.peigg.skillforge.data.bd.sqlite.DbHelper
 import com.peigg.skillforge.data.bd.sqlite.SkillForgeDatabase
 import com.peigg.skillforge.domain.Coaches
 import kotlinx.coroutines.Dispatchers.IO
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.withContext
 import javax.inject.Inject
 import javax.inject.Singleton
@@ -17,10 +20,35 @@ class SkillForgeRepository @Inject constructor(
     private val coachesRoom: CoachesRoom
 
 ) {
-
     suspend fun setupSkillForgeDatabase() {
         withContext(IO) {
-
+            if (coachesRoom.coachesDao().getAll().first().isEmpty()) {
+                val coach = CoachesEntity(
+                    1,
+                    "John Doe",
+                    R.drawable.image_pablo,
+                    "Java",
+                    "John Doe is a Java expert with 10 years of experience",
+                    "100"
+                )
+                val coach2 = CoachesEntity(
+                    2,
+                    "Mark",
+                    R.drawable.image_pablo,
+                    "Java",
+                    "Mark is a React expert with 10 years of experience",
+                    "1000"
+                )
+                val coach3 = CoachesEntity(
+                    3,
+                    "Pablo",
+                    R.drawable.image_pablo,
+                    "Java",
+                    "Pablo is a Java expert with 10 years of experience",
+                    "100"
+                )
+                coachesRoom.coachesDao().insertCoach(coach, coach2, coach3)
+            }
         }
 
         withContext(IO) {
@@ -45,9 +73,17 @@ class SkillForgeRepository @Inject constructor(
             db.insert(SkillForgeDatabase.TABLE_NAME, null, values)
         }
     }
+}
 
-    suspend fun getCoaches(): List<Coaches> = withContext(IO) {
-        val db = dbHelper.writableDatabase
+    suspend fun getCoaches(): List<Coaches> =
+        withContext(IO) {
+
+            val coachesEntities = coachesRoom.coachesDao().getAll().first()
+            coachesEntities.map { Coaches(it.id!!, it.name, it.image, it.spec, it.description, it.price) }
+
+        }
+    //logic to get coaches from sqlite
+       /* val db = dbHelper.writableDatabase
         val cursor = db.query(
             SkillForgeDatabase.TABLE_NAME,
             null, // All columns
@@ -71,6 +107,10 @@ class SkillForgeRepository @Inject constructor(
         }
         cursor.close()
         list
-    }
+    } */
 
-}}
+
+
+
+}
+

@@ -1,8 +1,10 @@
 package com.peigg.skillforge.features.ui.skillForgeScreen
 import android.util.Log
 import com.peigg.skillforge.data.bd.repositories.SkillForgeRepository
+
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.viewmodel.compose.viewModel
 
 import com.peigg.skillforge.domain.Coaches
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -11,7 +13,7 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-
+//viewmodel using the sqlite database
 
 @HiltViewModel
 class SkillForgeScreenViewModel @Inject constructor(
@@ -34,6 +36,8 @@ class SkillForgeScreenViewModel @Inject constructor(
         }
     }
 }
+
+
 /*
 @HiltViewModel
 class SkillForgeScreenViewModel @Inject constructor() : ViewModel()

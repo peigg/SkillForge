@@ -41,15 +41,15 @@ object SkillForgeDatabaseModule {
 
     @Provides
     fun provideSkillForgeRepository(dbHelper: DbHelper,coachesRoom: CoachesRoom): SkillForgeRepository {
-        return SkillForgeRepository(dbHelper, coachesRoom)
+        return SkillForgeRepository(dbHelper,coachesRoom)
     }
-}
 
-@Provides
-fun provideCoachesRoom(@ApplicationContext context: Context): CoachesRoom {
-    return Room.databaseBuilder(
-        context,
-        CoachesRoom::class.java,
+
+    @Provides
+    fun provideCoachesRoom(@ApplicationContext context: Context): CoachesRoom =
+    Room.databaseBuilder(
+        context, CoachesRoom::class.java,
         "CoachesRoom"
     ).build()
+
 }

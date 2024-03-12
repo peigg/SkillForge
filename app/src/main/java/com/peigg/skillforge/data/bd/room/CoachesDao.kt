@@ -11,5 +11,5 @@ interface CoachesDao {
     fun getAll(): Flow<List<CoachesEntity>>
 
     @Insert
-    fun insert(coaches: CoachesEntity)
+    fun insertCoach(vararg coaches: CoachesEntity)
 }
