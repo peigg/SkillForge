@@ -32,12 +32,13 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.peigg.skillforge.R
 import com.peigg.skillforge.domain.Coaches
+import com.peigg.skillforge.features.ui.profileScreen.navigateToProfileScreen
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 @Composable
-fun SkillForgeScreen(navController: NavController, viewModel: SkillForgeScreenViewModel = hiltViewModel()) {
+fun SkillForgeScreen(navController: NavController, viewModel: SkillForgeScreenViewModel = hiltViewModel(), navigateToProfileScreen: () -> Unit ){
     val snackbarHostState = remember { SnackbarHostState() }
     val coaches by viewModel.coaches.collectAsState()
     Log.d("SkillForgeScreen", "Coaches updated: $coaches")
@@ -46,7 +47,7 @@ fun SkillForgeScreen(navController: NavController, viewModel: SkillForgeScreenVi
             AppTopBar(snackbarHostState)
         },
         bottomBar = {
-            AppBottomBar(snackbarHostState, navController)
+            AppBottomBar(snackbarHostState, navController,  navigateToProfileScreen)
         },
         snackbarHost = { SnackbarHost(snackbarHostState) }
     ) { innerPadding ->
@@ -143,7 +144,7 @@ fun AppTopBar(snackbarHostState: SnackbarHostState) {
     )
 }
 @Composable
-fun AppBottomBar(snackbarHostState: SnackbarHostState,navController: NavController ) {
+fun AppBottomBar(snackbarHostState: SnackbarHostState,navController: NavController,navigateToProfileScreen: () -> Unit ) {
     NavigationBar(
         containerColor = MaterialTheme.colorScheme.primaryContainer // Aquí cambias el color de fondo
     ) {
@@ -186,16 +187,16 @@ fun AppBottomBar(snackbarHostState: SnackbarHostState,navController: NavControll
             icon = { Icon(Icons.Filled.AccountCircle, contentDescription = "Perfil") },
             label = { Text("Perfil") },
             selected = selectedItem == 2,
-            onClick = {
-                selectedItem = 2
-              /*  navController.navigate("perfil") {
-                    popUpTo = navController.graph.startDestinationId
-                    launchSingleTop = true
-                } */
+            onClick = {selectedItem = 2
+
+                navigateToProfileScreen()
+
+            }
+                   /*
                 CoroutineScope(Dispatchers.Main).launch {
                     snackbarHostState.showSnackbar("Perfil en construcción", duration = SnackbarDuration.Short)
-                }
-            }
+                }*/
+
         )
     }
 }

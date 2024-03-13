@@ -2,6 +2,7 @@ package com.peigg.skillforge.datainjection
 
 
 import android.content.Context
+import android.content.SharedPreferences
 import android.database.sqlite.SQLiteDatabase
 import androidx.room.Room
 import com.peigg.skillforge.data.bd.repositories.SkillForgeRepository
@@ -38,9 +39,14 @@ object SkillForgeDatabaseModule {
     }
 
 
+
     @Provides
-    fun provideSkillForgeRepository(dbHelper: DbHelper,coachesRoom: CoachesRoom,sharedPreferences: CoachesSharedPreferences): SkillForgeRepository {
-        return SkillForgeRepository(dbHelper,coachesRoom, sharedPreferences )
+    fun provideSkillForgeRepository(
+        dbHelper: DbHelper,
+        coachesRoom: CoachesRoom,
+        @CoachesSharedPreferences sharedPreferences: SharedPreferences
+    ): SkillForgeRepository {
+        return SkillForgeRepository(dbHelper, coachesRoom, sharedPreferences)
     }
 
 

@@ -12,6 +12,9 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.peigg.skillforge.features.ui.startscreen.StartScreen
 import androidx.compose.ui.Modifier
+import androidx.navigation.NavController
+import com.peigg.skillforge.features.ui.profileScreen.navigateToProfileScreen
+import com.peigg.skillforge.features.ui.profileScreen.profileScreen
 import com.peigg.skillforge.features.ui.skillForgeScreen.navigateToSkillForgeScreen
 import com.peigg.skillforge.features.ui.skillForgeScreen.skillForgeScreen
 
@@ -24,6 +27,7 @@ fun AppNavigation(modifier: Modifier = Modifier) {
         composable("start_screen") {
             StartScreen(navigateToSkillForgeScreen = { navController.navigateToSkillForgeScreen() })
         }
-        skillForgeScreen(navController) // Llamada a la función definida en SkillForgeScreenNavigation.kt
+        skillForgeScreen(navController, navigateToProfileScreen = {navController.navigateToProfileScreen()}) // Llamada a la función definida en SkillForgeScreenNavigation.kt
+        profileScreen(navController) // Llamada a la función definida en ProfileScreenNavigation.kt
     }
 }

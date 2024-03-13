@@ -1,6 +1,7 @@
 package com.peigg.skillforge.data.bd.repositories
 
 import android.content.ContentValues
+import android.content.SharedPreferences
 import com.peigg.skillforge.R
 import com.peigg.skillforge.data.bd.room.CoachesEntity
 import com.peigg.skillforge.data.bd.room.CoachesRoom
@@ -18,8 +19,7 @@ import javax.inject.Singleton
 class SkillForgeRepository @Inject constructor(
     private val dbHelper: DbHelper,
     private val coachesRoom: CoachesRoom,
-    @CoachesSharedPreferences private val sharedPreferences: CoachesSharedPreferences
-
+    @CoachesSharedPreferences private val coachesSharedPreferences: SharedPreferences
 ) {
     suspend fun setupSkillForgeDatabase() {
         withContext(IO) {
@@ -109,9 +109,5 @@ class SkillForgeRepository @Inject constructor(
         cursor.close()
         list
     } */
-
-
-
-
 }
 

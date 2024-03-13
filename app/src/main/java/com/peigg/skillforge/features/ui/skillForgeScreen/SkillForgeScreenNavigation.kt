@@ -11,8 +11,8 @@ val ROUTE = "skillforge_screen"
 fun NavController.navigateToSkillForgeScreen() {
     navigate(ROUTE)
 }
-fun NavGraphBuilder.skillForgeScreen(navController: NavController) {
+fun NavGraphBuilder.skillForgeScreen(navController: NavController, navigateToProfileScreen: () -> Unit){
     composable("skillforge_screen") {
-        SkillForgeScreen(navController = navController)
+        SkillForgeScreen(navController = navController, navigateToProfileScreen = navigateToProfileScreen)
     }
 }
