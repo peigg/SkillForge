@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">SkillForge</string>
+    <string name="profile">Profile</string>
+    <string name="notifications">Notifications</string>
+    <string name="name" >Name</string>
+    <string name="email">Email</string>
+    <string name="phone">Phone</string>
 </resources>

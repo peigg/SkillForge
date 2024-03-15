@@ -29,16 +29,17 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
-import androidx.navigation.NavController
 import com.peigg.skillforge.R
 import com.peigg.skillforge.domain.Coaches
-import com.peigg.skillforge.features.ui.profileScreen.navigateToProfileScreen
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 @Composable
-fun SkillForgeScreen(navController: NavController, viewModel: SkillForgeScreenViewModel = hiltViewModel(), navigateToProfileScreen: () -> Unit ){
+fun SkillForgeScreen(
+    viewModel: SkillForgeScreenViewModel = hiltViewModel(),
+    navigateToProfileScreen: () -> Unit
+){
     val snackbarHostState = remember { SnackbarHostState() }
     val coaches by viewModel.coaches.collectAsState()
     Log.d("SkillForgeScreen", "Coaches updated: $coaches")
@@ -47,7 +48,7 @@ fun SkillForgeScreen(navController: NavController, viewModel: SkillForgeScreenVi
             AppTopBar(snackbarHostState)
         },
         bottomBar = {
-            AppBottomBar(snackbarHostState, navController,  navigateToProfileScreen)
+            AppBottomBar(snackbarHostState, navigateToProfileScreen)
         },
         snackbarHost = { SnackbarHost(snackbarHostState) }
     ) { innerPadding ->
@@ -144,7 +145,7 @@ fun AppTopBar(snackbarHostState: SnackbarHostState) {
     )
 }
 @Composable
-fun AppBottomBar(snackbarHostState: SnackbarHostState,navController: NavController,navigateToProfileScreen: () -> Unit ) {
+fun AppBottomBar(snackbarHostState: SnackbarHostState, navigateToProfileScreen: () -> Unit) {
     NavigationBar(
         containerColor = MaterialTheme.colorScheme.primaryContainer // Aquí cambias el color de fondo
     ) {

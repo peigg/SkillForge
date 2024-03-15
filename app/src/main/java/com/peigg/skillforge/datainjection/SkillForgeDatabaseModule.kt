@@ -46,7 +46,7 @@ object SkillForgeDatabaseModule {
         coachesRoom: CoachesRoom,
         @CoachesSharedPreferences sharedPreferences: SharedPreferences
     ): SkillForgeRepository {
-        return SkillForgeRepository(dbHelper, coachesRoom, sharedPreferences)
+        return SkillForgeRepository(dbHelper, coachesRoom)
     }
 
 

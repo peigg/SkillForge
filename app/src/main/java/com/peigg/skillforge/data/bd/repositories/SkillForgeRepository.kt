@@ -1,13 +1,11 @@
 package com.peigg.skillforge.data.bd.repositories
 
 import android.content.ContentValues
-import android.content.SharedPreferences
 import com.peigg.skillforge.R
 import com.peigg.skillforge.data.bd.room.CoachesEntity
 import com.peigg.skillforge.data.bd.room.CoachesRoom
 import com.peigg.skillforge.data.bd.sqlite.DbHelper
 import com.peigg.skillforge.data.bd.sqlite.SkillForgeDatabase
-import com.peigg.skillforge.datainjection.CoachesSharedPreferences
 import com.peigg.skillforge.domain.Coaches
 import kotlinx.coroutines.Dispatchers.IO
 import kotlinx.coroutines.flow.first
@@ -18,8 +16,7 @@ import javax.inject.Singleton
 @Singleton
 class SkillForgeRepository @Inject constructor(
     private val dbHelper: DbHelper,
-    private val coachesRoom: CoachesRoom,
-    @CoachesSharedPreferences private val coachesSharedPreferences: SharedPreferences
+    private val coachesRoom: CoachesRoom
 ) {
     suspend fun setupSkillForgeDatabase() {
         withContext(IO) {

@@ -13,6 +13,6 @@ fun NavController.navigateToSkillForgeScreen() {
 }
 fun NavGraphBuilder.skillForgeScreen(navController: NavController, navigateToProfileScreen: () -> Unit){
     composable("skillforge_screen") {
-        SkillForgeScreen(navController = navController, navigateToProfileScreen = navigateToProfileScreen)
+        SkillForgeScreen(navigateToProfileScreen = navigateToProfileScreen)
     }
 }
