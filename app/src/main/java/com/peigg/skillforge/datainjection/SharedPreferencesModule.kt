@@ -2,6 +2,9 @@ package com.peigg.skillforge.datainjection
 
 import android.content.Context
 import android.content.SharedPreferences
+import androidx.datastore.core.DataStore
+import androidx.datastore.preferences.core.Preferences
+import androidx.datastore.preferences.preferencesDataStore
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -16,6 +19,9 @@ annotation class CoachesSharedPreferences
 @Qualifier
 @Retention(AnnotationRetention.BINARY)
 annotation class SettingsSharedPreferences
+
+val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = "settings")
+
 @Module
 @InstallIn(SingletonComponent::class)
 object SharedPreferencesModule {
@@ -28,5 +34,11 @@ object SharedPreferencesModule {
     @Provides
     fun provideSettingsSharedPreferences(@ApplicationContext context: Context): SharedPreferences =
         context.getSharedPreferences("settings", Context.MODE_PRIVATE)
-}
+
+    @Provides
+    fun providesProfileDataStore(@ApplicationContext context: Context): DataStore<Preferences> =
+        context.dataStore
+
+    }
+
 
