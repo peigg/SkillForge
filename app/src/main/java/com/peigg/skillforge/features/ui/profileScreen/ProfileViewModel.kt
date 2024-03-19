@@ -27,6 +27,8 @@ class ProfileViewModel @Inject constructor(
                     phone = profileRepository.getProfile(ProfileEvent.Phone.name)
                 )*/
                 viewModelScope.launch {
+                    profileRepository.getCatsFact()
+                    /*
                 profileRepository.getProfileDataStore().collect {
                     _state.value = ProfileState.Success(
                         profile = it[ProfileEvent.Profile]?: false,
@@ -35,7 +37,7 @@ class ProfileViewModel @Inject constructor(
                         email = it[ProfileEvent.Email]?: false,
                         phone = it[ProfileEvent.Phone]?: false
                     )
-                }
+                }*/
             }
         }
     fun onCheckedChange(profileEvent: ProfileEvent, isChecked: Boolean) {
